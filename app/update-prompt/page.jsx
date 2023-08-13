@@ -1,32 +1,35 @@
 "use client";
 
-import Form from "@components/Form";
-import { useRouter,useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const EditPrompt = () => {
+import Form from "@components/Form";
+
+const UpdatePrompt = () => {
   const router = useRouter();
-  const seachParams = useSearchParams();
-  const promptId = seachParams.get('id');  
-  const [submitting, setSubmiting] = useState(false);
-  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const searchParams = useSearchParams();
+  const promptId = searchParams.get("id");
+
+  const [post, setPost] = useState({ prompt: "", tag: "", });
+  const [submitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-  const  getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`)
+    const getPromptDetails = async () => {
+      const response = await fetch(`/api/prompt/${promptId}`);
       const data = await response.json();
+
       setPost({
-        prompt:data.prompt,
-        tag:data.tag
-      })
-    }
-    if(promptId) getPromptDetails();
-    
-  },[promptId])
+        prompt: data.prompt,
+        tag: data.tag,
+      });
+    };
+
+    if (promptId) getPromptDetails();
+  }, [promptId]);
 
   const updatePrompt = async (e) => {
     e.preventDefault();
-    setSubmiting(true);
+    setIsSubmitting(true);
 
     if (!promptId) return alert("Missing PromptId!");
 
@@ -45,20 +48,19 @@ const EditPrompt = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setSubmiting(false);
+      setIsSubmitting(false);
     }
   };
 
-
   return (
     <Form
-     type="Edit"
-     post = {post} 
-     setPost = {setPost} 
-     submitting = {submitting}
-     handleSubmit = {updatePrompt}    
+      type='Edit'
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={updatePrompt}
     />
   );
 };
 
-export default EditPrompt;
+export default UpdatePrompt;

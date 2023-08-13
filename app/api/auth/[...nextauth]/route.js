@@ -1,7 +1,6 @@
-
-
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+
 import User from '@models/user';
 import { connectToDB } from '@utils/database';
 
@@ -20,7 +19,7 @@ const handler = NextAuth({
 
       return session;
     },
-    async signIn({profile }) {
+    async signIn({ account, profile, user, credentials }) {
       try {
         await connectToDB();
 
@@ -41,9 +40,8 @@ const handler = NextAuth({
         console.log("Error checking if user exists: ", error.message);
         return false
       }
-    }
+    },
   }
+})
 
-});
-
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }
