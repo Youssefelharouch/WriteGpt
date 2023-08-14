@@ -25,14 +25,14 @@ const Nav = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="container relative mx-auto p-6">
+    <nav className="container relative mx-auto py-6">
       {/* Flex Container For Nav Items */}
       <div className="flex items-center justify-between space-x-20 my-6">
         {/* Logo */}
         <div className="z-30">
         <Link href="/">
-          <Image src="/assets/images2/logo-bookmark.svg" alt="" id="logo" width={140} height={100} />
-          </Link>
+          <Image className="h-8 w-40" src="/assets/images2/logo-bookmark.svg" alt="" id="logo" width={140} height={140} />
+          </Link> 
         </div>
 
         {/* Menu Items */}
@@ -41,7 +41,7 @@ const Nav = () => {
             className={`hidden md:flex items-center space-x-10 uppercase text-grayishBlue`}
           >
             <Link
-              href="/create-propmpt"
+              href="/create-prompt"
               className="px-3 py-2 text-s font-semibold text-white bg-softBlue rounded shadow-md border-2 border-softBlue 
               text-base hover:bg-white hover:text-softBlue
               "
@@ -146,7 +146,7 @@ const Nav = () => {
             <p className="hover:text-softRed">My Profile </p>
           </Link>
           <div className="w-full py-3 text-center">
-            <Link href="#download" className="block hover:text-softRed">
+            <Link href="/create-prompt" className="block hover:text-softRed">
               Create Prompt
             </Link>
           </div>
@@ -172,7 +172,7 @@ const Nav = () => {
           
                   <div className="w-full py-3 text-center">
                     <Link href="#download" className="block hover:text-softRed">
-                      Other Sing In
+                      Other Sing In Comming soon ...
                     </Link>
                   </div>
                   <div className="w-full py-3 text-center">
