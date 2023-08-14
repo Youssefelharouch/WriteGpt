@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import Logo from "../public/assets/images2/logo-bookmark.svg";
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,7 +31,7 @@ const Nav = () => {
         {/* Logo */}
         <div className="z-30">
         <Link href="/">
-          <Image src={Logo} alt="" id="logo" width={140} height={100} />
+          <Image src="/assets/images2/logo-bookmark.svg" alt="" id="logo" width={140} height={100} />
           </Link>
         </div>
 
